@@ -1,0 +1,6 @@
+d8_activecampaign.admin_form:
+  title: 'ActiveCampaign'
+  parent: system.admin_config_services
+  description: "Configure ActiveCampaign API"
+  weight: 10
+  route_name: d8_activecampaign.admin_form

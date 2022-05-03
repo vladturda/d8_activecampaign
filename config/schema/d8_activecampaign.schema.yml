@@ -1,0 +1,17 @@
+d8_activecampaign.settings:
+  type: config_object
+  label: 'ActiveCampaign API Settings'
+  mapping:
+    api_url:
+      type: string
+      label: 'ActiveCampaign API URL'
+    api_key:
+      type: string
+      label: 'ActiveCampaign API Key'
+    api_lists:
+      type: mapping
+      mapping:
+        all_user_list:
+          type: integer
+        newsletter_user_list:
+          type: integer

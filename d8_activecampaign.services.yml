@@ -1,0 +1,9 @@
+services:
+  d8_activecampaign.api:
+    class: Drupal\d8_activecampaign\Service\ApiService
+    arguments: ['@config.factory']
+  d8_activecampaign.recurly_successful_payment_subscriber:
+    class: Drupal\d8_activecampaign\EventSubscriber\RecurlySuccessfullPaymentSubscriber
+    arguments: []
+    tags:
+      - { name: event_subscriber }

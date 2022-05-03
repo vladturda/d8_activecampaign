@@ -1,0 +1,29 @@
+<?php
+
+use Drupal\user\Entity\User;
+
+function d8_activecampaign_user_insert( User $new_user ) {
+  /** @var \Drupal\Core\Config\Config $config */
+  $config = \Drupal::config('d8_activecampaign.settings');
+
+  /** @var \Drupal\d8_activecampaign\Service\ApiServiceInterface */
+  $apiService = \Drupal::service('d8_activecampaign.api');
+
+  $user_array = $new_user->toArray();
+
+  $contact = [
+    'email' => $new_user->getInitialEmail(),
+  ];
+
+  $field_ac_newsletter_reg = boolval($user_array['field_ac_newsletter_reg'][0]['value']);
+  //Drupal::logger('d8_activecamaign')->info( $field_ac_newsletter_reg ? 'checked' : 'unchecked' );
+
+  // All users are added to this list
+  $apiService->addToList($contact, intval($config->get('all_user_list')));
+
+  // Newsletter subscribed users are added to this list
+  if ($field_ac_newsletter_reg) {
+    $apiService->addToList($contact, intval($config->get('newsletter_user_list')));
+  }
+
+}

@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Install, uninstall and update hooks for ActiveCampaign module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_requirements().
+ */
+function d8_activecampaign_requirements($phase) {
+  $requirements = [];
+
+  if ($phase == 'runtime') {
+    $config = \Drupal::config('d8_activecampaign.settings');
+
+    // Raise warning if the API URL has not been set yet.
+    if (!$config->get('api_url')) {
+      $requirements['api_url'] = [
+        'title' => t('ActiveCampaign API URL'),
+        'description' => t('The ActiveCampaign API URL has not been configured yet. Please configure its settings from the <a href=":url">ActiveCampaign settings page</a>.', [
+          ':url' => Url::fromRoute('d8_activecampaign.admin_form')
+            ->toString(),
+        ]),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => t('Not configured'),
+      ];
+    }
+    // Raise warning if the API Key has not been set yet.
+    if (!$config->get('api_key')) {
+      $requirements['api_key'] = [
+        'title' => t('ActiveCampaign API Key'),
+        'description' => t('The ActiveCampaign API Key has not been configured yet. Please configure its settings from the <a href=":url">ActiveCampaign settings page</a>.', [
+          ':url' => Url::fromRoute('d8_activecampaign.admin_form')
+            ->toString(),
+        ]),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => t('Not configured'),
+      ];
+    }
+  }
+
+  return $requirements;
+}

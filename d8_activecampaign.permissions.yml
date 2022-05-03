@@ -1,0 +1,4 @@
+administer d8_activecampaign settings:
+  title: 'Administer ActiveCampaign module'
+  description: 'Perform administration tasks for the ActiveCampaign module.'
+  restrict access: TRUE

@@ -1,0 +1,7 @@
+d8_activecampaign.admin_form:
+  path: '/admin/config/services/d8_activecampaign'
+  defaults:
+    _form: '\Drupal\d8_activecampaign\Form\SettingsForm'
+    _title: ActiveCampaign Settings
+  requirements:
+    _permission: 'administer d8_activecampaign settings'
